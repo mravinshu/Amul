@@ -4,14 +4,57 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/rendering.dart';
 
 void main() {
-  runApp(MaterialApp(
-    title: 'Navigation Basics',
-    home: Login(),
-  ));
+  runApp(MyApp());
 }
 
-class Login extends StatelessWidget {
-  String _password = 'Amul2020';
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Amul',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: Login(),
+    );
+  }
+}
+
+class Login extends StatefulWidget {
+  Login({Key key, this.title}) : super(key: key);
+
+  final String title;
+
+  @override
+  _LoginState createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
+  GlobalKey<FormState> formkey = GlobalKey<FormState>();
+  String password = 'amul2020';
+  String _password;
+  String username = 'harry';
+  String _username;
+  void validate() {
+    if (formkey.currentState.validate()) {
+      print("Validated");
+    } else {
+      print('Not Validated');
+    }
+  }
+
+  String validatepass(value) {
+    if (value.isEmpty) {
+      return "Required";
+    } else {
+      if (value == password) {
+        return "";
+      } else {
+        return "Not Correct";
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,7 +80,8 @@ class Login extends StatelessWidget {
               borderRadius: BorderRadius.circular(30.0),
             ),
             elevation: 20,
-            child: Container(
+            child: Form(
+              key: formkey,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -49,16 +93,17 @@ class Login extends StatelessWidget {
                         color: Colors.red,
                         fontWeight: FontWeight.bold),
                   ),
-                  TextField(
-                    controller: TextEditingController(),
+                  TextFormField(
                     maxLength: 25,
-                    decoration: InputDecoration(
-                      icon: const Padding(
-                        padding: const EdgeInsets.only(top: 15.0),
-                        child: const Icon(Icons.person),
-                      ),
-                      hintText: 'Enter username',
-                    ),
+                    decoration: const InputDecoration(
+                        labelText: 'Username',
+                        icon: const Padding(
+                          padding: const EdgeInsets.only(top: 15.0),
+                          child: const Icon(Icons.lock),
+                        )),
+                    onChanged: (String value) {
+                      _username = value;
+                    },
                   ),
                   Text(
                     'Password',
@@ -75,16 +120,26 @@ class Login extends StatelessWidget {
                           padding: const EdgeInsets.only(top: 15.0),
                           child: const Icon(Icons.lock),
                         )),
+                    validator: validatepass,
+                    onChanged: (String value) {
+                      _password = value;
+                    },
                   ),
                   Padding(
                     padding: const EdgeInsets.all(40.0),
                     child: CupertinoButton.filled(
                       child: Text('Login'),
                       onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => HomePage1()));
+                        if (password == _password) {
+                          if (username == _username) {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Homepage1()));
+                          }
+                        } else {
+                          return "Wrong Password";
+                        }
                       },
                     ),
                   )
