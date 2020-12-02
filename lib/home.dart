@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:amul/bill.dart';
 
 class Homepage1 extends StatefulWidget {
   @override
@@ -263,6 +264,17 @@ class _Homepage1State extends State<Homepage1> {
               ],
             ),
           ),
+          CupertinoButton.filled(
+              child: Text('Bill'),
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => Bill(),
+                        settings: RouteSettings(
+                          arguments: customername,
+                        )));
+              })
         ],
       ),
     );
