@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:amul/home.dart';
 
 class Bill extends StatefulWidget {
+  final Variables value;
+  Bill({Key key, this.value}): super(key: key);
   @override
   _BillState createState() => _BillState();
 }
@@ -22,7 +24,7 @@ class _BillState extends State<Bill> {
                         fit: BoxFit.cover)),
                 child: Center(
                   child: Text(
-                    'Set Full Screen Background Image in Flutter',
+                    '${widget.value.customername}${widget.value.billnumber}${widget.value.vehiclenumber}',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         color: Colors.brown,

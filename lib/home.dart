@@ -2,23 +2,32 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:amul/bill.dart';
 
+class Variables {
+  final String customername, vehiclenumber,billnumber;
+  const Variables({
+    this.customername,
+    this.vehiclenumber,
+    this.billnumber
+  });
+}
+
 class Homepage1 extends StatefulWidget {
   @override
   _Homepage1State createState() => _Homepage1State();
 }
 
 class _Homepage1State extends State<Homepage1> {
+  var _customernamecontroller = new TextEditingController();
+  var _vehiclenumbercontroller = new TextEditingController();
+  var _billnumbercontroller = new TextEditingController();
   var _name = ' Harwinder Singh';
   var nutri = 0;
   int amount;
   int milk = 0;
   String dropdownValue;
-  String vehiclenumber;
-  String billnumber;
   int curd = 0;
   int total = 0;
   int other;
-  String customername;
   @override
   Widget build(BuildContext context) {
     var scaffold = Scaffold(
@@ -80,9 +89,7 @@ class _Homepage1State extends State<Homepage1> {
                         padding: EdgeInsets.only(top: 15.0),
                         child: Icon(Icons.person),
                       )),
-                  onChanged: (String value) {
-                    customername = value;
-                  },
+                  controller: _customernamecontroller,
                 ),
                 TextFormField(
                   maxLength: 25,
@@ -92,9 +99,7 @@ class _Homepage1State extends State<Homepage1> {
                         padding: EdgeInsets.only(top: 15.0),
                         child: Icon(Icons.directions_bus),
                       )),
-                  onChanged: (String value) {
-                    vehiclenumber = value;
-                  },
+                    controller: _vehiclenumbercontroller,
                 ),
                 TextFormField(
                   maxLength: 25,
@@ -104,9 +109,7 @@ class _Homepage1State extends State<Homepage1> {
                         padding: EdgeInsets.only(top: 15.0),
                         child: Icon(Icons.monetization_on),
                       )),
-                  onChanged: (String value) {
-                    billnumber = value;
-                  },
+                    controller: _billnumbercontroller
                 ),
                 Row(
                   children: [
@@ -270,10 +273,12 @@ class _Homepage1State extends State<Homepage1> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => Bill(),
-                        settings: RouteSettings(
-                          arguments: customername,
-                        )));
+                        builder: (context) => Bill(value: Variables(
+                          customername: _customernamecontroller.text,
+                          vehiclenumber: _vehiclenumbercontroller.text,
+                          billnumber: _billnumbercontroller.text,
+                        )),
+                        ));
               })
         ],
       ),
