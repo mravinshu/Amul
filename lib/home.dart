@@ -3,12 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:amul/bill.dart';
 
 class Variables {
-  final String customername, vehiclenumber,billnumber;
-  const Variables({
-    this.customername,
-    this.vehiclenumber,
-    this.billnumber
-  });
+  final String customername, vehiclenumber, billnumber;
+  const Variables({this.customername, this.vehiclenumber, this.billnumber});
 }
 
 class Homepage1 extends StatefulWidget {
@@ -27,7 +23,7 @@ class _Homepage1State extends State<Homepage1> {
   String dropdownValue;
   int curd = 0;
   int total = 0;
-  int other;
+  int other = 0;
   @override
   Widget build(BuildContext context) {
     var scaffold = Scaffold(
@@ -99,18 +95,17 @@ class _Homepage1State extends State<Homepage1> {
                         padding: EdgeInsets.only(top: 15.0),
                         child: Icon(Icons.directions_bus),
                       )),
-                    controller: _vehiclenumbercontroller,
+                  controller: _vehiclenumbercontroller,
                 ),
                 TextFormField(
-                  maxLength: 25,
-                  decoration: InputDecoration(
-                      labelText: 'Bill Number',
-                      icon: Padding(
-                        padding: EdgeInsets.only(top: 15.0),
-                        child: Icon(Icons.monetization_on),
-                      )),
-                    controller: _billnumbercontroller
-                ),
+                    maxLength: 25,
+                    decoration: InputDecoration(
+                        labelText: 'Bill Number',
+                        icon: Padding(
+                          padding: EdgeInsets.only(top: 15.0),
+                          child: Icon(Icons.monetization_on),
+                        )),
+                    controller: _billnumbercontroller),
                 Row(
                   children: [
                     Expanded(
@@ -273,12 +268,13 @@ class _Homepage1State extends State<Homepage1> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => Bill(value: Variables(
-                          customername: _customernamecontroller.text,
-                          vehiclenumber: _vehiclenumbercontroller.text,
-                          billnumber: _billnumbercontroller.text,
-                        )),
-                        ));
+                      builder: (context) => Bill(
+                          value: Variables(
+                        customername: _customernamecontroller.text,
+                        vehiclenumber: _vehiclenumbercontroller.text,
+                        billnumber: _billnumbercontroller.text,
+                      )),
+                    ));
               })
         ],
       ),
