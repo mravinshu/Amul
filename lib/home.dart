@@ -4,7 +4,8 @@ import 'package:amul/bill.dart';
 
 class Variables {
   final String customername, vehiclenumber, billnumber;
-  const Variables({this.customername, this.vehiclenumber, this.billnumber});
+  final int milk,curd,nutri,other,total;
+  const Variables({this.customername, this.vehiclenumber, this.billnumber,this.milk,this.nutri,this.curd,this.other,this.total});
 }
 
 class Homepage1 extends StatefulWidget {
@@ -17,7 +18,7 @@ class _Homepage1State extends State<Homepage1> {
   var _vehiclenumbercontroller = new TextEditingController();
   var _billnumbercontroller = new TextEditingController();
   var _name = ' Harwinder Singh';
-  var nutri = 0;
+  int nutri = 0;
   int amount;
   int milk = 0;
   String dropdownValue;
@@ -66,217 +67,231 @@ class _Homepage1State extends State<Homepage1> {
           ],
         ),
       ),
-      body: Column(
-        children: [
-          Card(
-            child: Column(
-              children: [
-                Text(
-                  'Customer Details',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
+      body: Container(
+        padding: const EdgeInsets.all(40),
+        child: Column(
+          children: [
+            Card(
+              child: Column(
+                children: [
+                  Text(
+                    'Customer Details',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                ),
-                TextFormField(
-                  maxLength: 25,
-                  decoration: InputDecoration(
-                      labelText: 'Username',
-                      icon: Padding(
-                        padding: EdgeInsets.only(top: 15.0),
-                        child: Icon(Icons.person),
-                      )),
-                  controller: _customernamecontroller,
-                ),
-                TextFormField(
-                  maxLength: 25,
-                  decoration: InputDecoration(
-                      labelText: 'Vehicle Number',
-                      icon: Padding(
-                        padding: EdgeInsets.only(top: 15.0),
-                        child: Icon(Icons.directions_bus),
-                      )),
-                  controller: _vehiclenumbercontroller,
-                ),
-                TextFormField(
+                  TextFormField(
                     maxLength: 25,
                     decoration: InputDecoration(
-                        labelText: 'Bill Number',
+                        labelText: 'Username',
                         icon: Padding(
                           padding: EdgeInsets.only(top: 15.0),
-                          child: Icon(Icons.monetization_on),
+                          child: Icon(Icons.person),
                         )),
-                    controller: _billnumbercontroller),
-                Row(
-                  children: [
-                    Expanded(
-                      child: Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Card(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(15.0),
+                    controller: _customernamecontroller,
+                  ),
+                  TextFormField(
+                    maxLength: 25,
+                    decoration: InputDecoration(
+                        labelText: 'Vehicle Number',
+                        icon: Padding(
+                          padding: EdgeInsets.only(top: 15.0),
+                          child: Icon(Icons.directions_bus),
+                        )),
+                    controller: _vehiclenumbercontroller,
+                  ),
+                  TextFormField(
+                      maxLength: 25,
+                      decoration: InputDecoration(
+                          labelText: 'Bill Number',
+                          icon: Padding(
+                            padding: EdgeInsets.only(top: 15.0),
+                            child: Icon(Icons.monetization_on),
+                          )),
+                      controller: _billnumbercontroller),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: Card(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15.0),
+                            ),
+                            child: Column(
+                              children: [
+                                Text(
+                                  'Products',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontFamily: 'Tatu',
+                                      fontSize: 20),
+                                ),
+                                Row(
+                                  children: [
+                                    DropdownButton<String>(
+                                      value: dropdownValue,
+                                      icon: Icon(Icons.arrow_downward),
+                                      iconSize: 24,
+                                      elevation: 16,
+                                      style: TextStyle(color: Colors.deepPurple),
+                                      underline: Container(
+                                        height: 2,
+                                        color: Colors.deepPurpleAccent,
+                                      ),
+                                      onChanged: (String newValue) {
+                                        setState(() {
+                                          dropdownValue = newValue;
+                                        });
+                                      },
+                                      items: <String>[
+                                        'Nutri Rich',
+                                        'Milk',
+                                        'Curd',
+                                        'Other'
+                                      ].map<DropdownMenuItem<String>>(
+                                          (String value) {
+                                        return DropdownMenuItem<String>(
+                                          value: value,
+                                          child: Text(value),
+                                        );
+                                      }).toList(),
+                                    ),
+                                    CupertinoButton(
+                                      child: Icon(
+                                        Icons.add,
+                                      ),
+                                      onPressed: () {
+                                        if (dropdownValue == 'Nutri Rich') {
+                                          nutri = amount;
+
+                                        }
+                                        if (dropdownValue == 'Milk') {
+                                          milk = amount;
+
+                                        }
+                                        if (dropdownValue == 'Curd') {
+                                          curd = amount;
+
+                                        }
+                                        if (dropdownValue == 'Other') {
+                                          other = amount;
+                                        }
+                                      },
+                                    )
+                                  ],
+                                ),
+                                TextFormField(
+
+                                  maxLength: 25,
+                                  decoration: InputDecoration(
+                                      labelText: 'Amount',
+                                      icon: Padding(
+                                        padding: EdgeInsets.only(top: 15.0),
+                                        child: Icon(Icons.backup),
+                                      )),
+                                  onChanged: (String value) {
+                                    amount = int.parse(value);
+                                  },
+                                ),
+                              ],
+                            ),
                           ),
+                        ),
+                      ),
+                      Expanded(
+                        child: Card(
                           child: Column(
                             children: [
-                              Text(
-                                'Products',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontFamily: 'Tatu',
-                                    fontSize: 20),
-                              ),
-                              Row(
-                                children: [
-                                  DropdownButton<String>(
-                                    value: dropdownValue,
-                                    icon: Icon(Icons.arrow_downward),
-                                    iconSize: 24,
-                                    elevation: 16,
-                                    style: TextStyle(color: Colors.deepPurple),
-                                    underline: Container(
-                                      height: 2,
-                                      color: Colors.deepPurpleAccent,
-                                    ),
-                                    onChanged: (String newValue) {
-                                      setState(() {
-                                        dropdownValue = newValue;
-                                      });
-                                    },
-                                    items: <String>[
-                                      'Nutri Rich',
-                                      'Milk',
-                                      'Curd',
-                                      'Other'
-                                    ].map<DropdownMenuItem<String>>(
-                                        (String value) {
-                                      return DropdownMenuItem<String>(
-                                        value: value,
-                                        child: Text(value),
-                                      );
-                                    }).toList(),
-                                  ),
-                                  CupertinoButton(
-                                    child: Icon(
-                                      Icons.add,
-                                    ),
-                                    onPressed: () {
-                                      if (dropdownValue == 'Nutri Rich') {
-                                        nutri = amount;
-                                      }
-                                      if (dropdownValue == 'Milk') {
-                                        milk = amount;
-                                      }
-                                      if (dropdownValue == 'Curd') {
-                                        curd = amount;
-                                      }
-                                      if (dropdownValue == 'Other') {
-                                        other = amount;
-                                      }
-                                    },
-                                  )
-                                ],
-                              ),
-                              TextFormField(
-                                maxLength: 25,
-                                decoration: InputDecoration(
-                                    labelText: 'Amount',
-                                    icon: Padding(
-                                      padding: EdgeInsets.only(top: 15.0),
-                                      child: Icon(Icons.backup),
-                                    )),
-                                onChanged: (String value) {
-                                  amount = int.parse(value);
+                              CupertinoButton.filled(
+                                child: Text('Total'),
+                                onPressed: () {
+                                  if (dropdownValue == 'Nutri Rich') {
+                                    nutri = amount;
+                                  }
+                                  if (dropdownValue == 'Milk') {
+                                    milk = amount;
+                                  }
+                                  if (dropdownValue == 'Curd') {
+                                    curd = amount;
+                                  }
+                                  if (dropdownValue == 'Other') {
+                                    other = amount;
+                                  }
+                                  setState(() {
+                                    total = nutri + milk + curd;
+
+                                  });
                                 },
+                              ),
+                              Text(
+                                'Total Weight = $total',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 20),
+                              ),
+                              Column(
+                                children: [
+                                  if (nutri != 0)
+                                    Text(
+                                      'Nutri Rich = $nutri',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 15),
+                                    ),
+                                  if (milk != 0)
+                                    Text(
+                                      'Milk = $milk',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 15),
+                                    ),
+                                  if (curd != 0)
+                                    Text(
+                                      'Curd = $curd',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 15),
+                                    ),
+                                  if (other != 0)
+                                    Text(
+                                      'Other = $other',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 15),
+                                    ),
+                                ],
                               ),
                             ],
                           ),
                         ),
-                      ),
-                    ),
-                    Expanded(
-                      child: Card(
-                        child: Column(
-                          children: [
-                            CupertinoButton.filled(
-                              child: Text('Total'),
-                              onPressed: () {
-                                if (dropdownValue == 'Nutri Rich') {
-                                  nutri = amount;
-                                }
-                                if (dropdownValue == 'Milk') {
-                                  milk = amount;
-                                }
-                                if (dropdownValue == 'Curd') {
-                                  curd = amount;
-                                }
-                                if (dropdownValue == 'Other') {
-                                  other = amount;
-                                }
-                                setState(() {
-                                  total = nutri + milk + curd;
-                                });
-                              },
-                            ),
-                            Text(
-                              'Total Weight = $total',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 20),
-                            ),
-                            Column(
-                              children: [
-                                if (nutri != 0)
-                                  Text(
-                                    'Nutri Rich = $nutri',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 15),
-                                  ),
-                                if (milk != 0)
-                                  Text(
-                                    'Milk = $milk',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 15),
-                                  ),
-                                if (curd != 0)
-                                  Text(
-                                    'Curd = $curd',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 15),
-                                  ),
-                                if (other != 0)
-                                  Text(
-                                    'Other = $other',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 15),
-                                  ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    )
-                  ],
-                )
-              ],
+                      )
+                    ],
+                  )
+                ],
+              ),
             ),
-          ),
-          CupertinoButton.filled(
-              child: Text('Bill'),
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => Bill(
-                          value: Variables(
-                        customername: _customernamecontroller.text,
-                        vehiclenumber: _vehiclenumbercontroller.text,
-                        billnumber: _billnumbercontroller.text,
-                      )),
-                    ));
-              })
-        ],
+            CupertinoButton.filled(
+                child: Text('Bill'),
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Bill(
+                            value: Variables(
+                          customername: _customernamecontroller.text,
+                          vehiclenumber: _vehiclenumbercontroller.text,
+                          billnumber: _billnumbercontroller.text,
+                          milk: milk,
+                          curd: curd,
+                          nutri: nutri,
+                          other: other,
+                          total: total,
+
+                        )),
+                      ));
+                })
+          ],
+        ),
       ),
     );
     return MaterialApp(

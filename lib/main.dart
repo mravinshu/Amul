@@ -74,7 +74,7 @@ class _LoginState extends State<Login> {
       backgroundColor: Colors.white,
       body: Center(
         child: Padding(
-          padding: const EdgeInsets.all(20.0),
+          padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 400),
           child: Card(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(30.0),
@@ -83,6 +83,7 @@ class _LoginState extends State<Login> {
             child: Form(
               key: formkey,
               child: Column(
+
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
@@ -94,12 +95,15 @@ class _LoginState extends State<Login> {
                         fontWeight: FontWeight.bold),
                   ),
                   TextFormField(
+
                     maxLength: 25,
                     decoration: const InputDecoration(
                         labelText: 'Username',
+                        fillColor: Colors.red,
                         icon: const Padding(
-                          padding: const EdgeInsets.only(top: 15.0),
+                          padding: const EdgeInsets.symmetric(vertical:15.0, horizontal: 10),
                           child: const Icon(Icons.lock),
+
                         )),
                     onChanged: (String value) {
                       _username = value;
@@ -117,7 +121,7 @@ class _LoginState extends State<Login> {
                     decoration: const InputDecoration(
                         labelText: 'Password',
                         icon: const Padding(
-                          padding: const EdgeInsets.only(top: 15.0),
+                          padding: const EdgeInsets.symmetric(vertical:15.0, horizontal: 10),
                           child: const Icon(Icons.lock),
                         )),
                     validator: validatepass,
@@ -127,20 +131,24 @@ class _LoginState extends State<Login> {
                   ),
                   Padding(
                     padding: const EdgeInsets.all(40.0),
-                    child: CupertinoButton.filled(
-                      child: Text('Login'),
-                      onPressed: () {
-                        if (password == _password) {
-                          if (username == _username) {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => Homepage1()));
+                    child: Container(
+                      child: CupertinoButton(
+                        color: Colors.red,
+                        child: Text('Login'
+                        ),
+                        onPressed: () {
+                          if (password == _password) {
+                            if (username == _username) {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => Homepage1()));
+                            }
+                          } else {
+                            return "Wrong Password";
                           }
-                        } else {
-                          return "Wrong Password";
-                        }
-                      },
+                        },
+                      ),
                     ),
                   )
                 ],

@@ -72,6 +72,41 @@ class _BillState extends State<Bill> {
                         fontSize: 25,
                         fontWeight: FontWeight.bold),
                   ),
+                  Text(
+                    '             Milk                                    ${widget.value.milk}',
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    '          nutri                                 ${widget.value.nutri}',
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    '         curd                                  ${widget.value.curd}',
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    '       others                                    ${widget.value.other}',
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    '     total                                      ${widget.value.total}',
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold),
+                  ),
                   Card(
                     child: Container(
                       height: 380,
