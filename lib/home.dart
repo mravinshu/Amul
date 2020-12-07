@@ -118,195 +118,179 @@ class _Homepage1State extends State<Homepage1> {
                         Expanded(
                           child: Padding(
                             padding: EdgeInsets.all(8.0),
-                            child: Card(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(15.0),
-
-                              ),
-                              margin: const EdgeInsets.only(bottom: 10),
-
-                              child: Column(
-                                children: [
-                                  Text(
-                                    'Products',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontFamily: 'Tatu',
-                                        fontSize: 20),
-                                  ),
-                                  Row(
-                                    children: [
-                                      DropdownButton<String>(
-                                        value: dropdownValue,
-                                        icon: Icon(Icons.arrow_downward),
-                                        iconSize: 24,
-                                        elevation: 16,
-                                        style: TextStyle(color: Colors.deepPurple),
-                                        underline: Container(
-                                          height: 2,
-                                          color: Colors.deepPurpleAccent,
-                                        ),
-                                        onChanged: (String newValue) {
-                                          setState(() {
-                                            dropdownValue = newValue;
-                                          });
-                                        },
-                                        items: <String>[
-                                          'Nutri Rich',
-                                          'Milk',
-                                          'Curd',
-                                          'Other'
-                                        ].map<DropdownMenuItem<String>>(
-                                            (String value) {
-                                          return DropdownMenuItem<String>(
-                                            value: value,
-                                            child: Text(value),
-                                          );
-                                        }).toList(),
-                                      ),
-                                      CupertinoButton(
-                                        child: Icon(
-                                          Icons.add,
-                                        ),
-                                        onPressed: () {
-                                          if (dropdownValue == 'Nutri Rich') {
-                                            nutri = amount;
-
-                                          }
-                                          if (dropdownValue == 'Milk') {
-                                            milk = amount;
-
-                                          }
-                                          if (dropdownValue == 'Curd') {
-                                            curd = amount;
-
-                                          }
-                                          if (dropdownValue == 'Other') {
-                                            other = amount;
-                                          }
-                                        },
-                                      )
-                                    ],
-                                  ),
-                                  TextFormField(
-                                    maxLength: 25,
-                                    decoration: InputDecoration(
-                                        labelText: 'Amount',
-                                        icon: Padding(
-                                          padding: EdgeInsets.only(top: 15.0),
-                                          child: Icon(Icons.backup),
-                                        )),
-                                    onChanged: (String value) {
-                                      amount = int.parse(value);
-                                    },
-                                  ),
-                                  CupertinoButton(
-
-                                    color: Colors.red,
-                                    child: Text('Total'),
-                                    onPressed: () {
-                                      if (dropdownValue == 'Nutri Rich') {
-                                        nutri = amount;
-                                      }
-                                      if (dropdownValue == 'Milk') {
-                                        milk = amount;
-                                      }
-                                      if (dropdownValue == 'Curd') {
-                                        curd = amount;
-                                      }
-                                      if (dropdownValue == 'Other') {
-                                        other = amount;
-                                      }
-                                      setState(() {
-                                        total = nutri + milk + curd+ other;
-
-                                      });
-                                    },
-                                  ),
-                                ],
-                              ),
-
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          child: Card(
                             child: Column(
                               children: [
-                                Table(
-                                  border: TableBorder.all(),
+                                Text(
+                                  'Products',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontFamily: 'Tatu',
+                                      fontSize: 20),
+                                ),
+                                Row(
                                   children: [
-                                    TableRow(children: [
-                                      Text('Product'),
-                                      Text('Amount'),
-                                    ]),
-                                    if (nutri != 0)
-                                    TableRow(children: [
-                                      Text('Nutri Rich'),
-                                      Text('$nutri'),
-                                    ]),
-                                    if (milk != 0)
-                                    TableRow(children: [
-                                      Text('Milk'),
-                                      Text(' $milk'),
-                                    ]),
-                                    if (curd != 0)
-                                    TableRow(children: [
-                                      Text('Curd'),
-                                      Text('$curd'),
-                                    ]),
-                                    if (other != 0)
-                                    TableRow(children: [
-                                      Text('Other'),
-                                      Text('$other'),
-                                    ]),
+                                    DropdownButton<String>(
+                                      value: dropdownValue,
+                                      icon: Icon(Icons.arrow_downward),
+                                      iconSize: 24,
+                                      elevation: 16,
+                                      style: TextStyle(color: Colors.deepPurple),
+                                      underline: Container(
+                                        height: 2,
+                                        color: Colors.deepPurpleAccent,
+                                      ),
+                                      onChanged: (String newValue) {
+                                        setState(() {
+                                          dropdownValue = newValue;
+                                        });
+                                      },
+                                      items: <String>[
+                                        'Nutri Rich',
+                                        'Milk',
+                                        'Curd',
+                                        'Other'
+                                      ].map<DropdownMenuItem<String>>(
+                                          (String value) {
+                                        return DropdownMenuItem<String>(
+                                          value: value,
+                                          child: Text(value),
+                                        );
+                                      }).toList(),
+                                    ),
+                                    CupertinoButton(
+                                      child: Icon(
+                                        Icons.add,
+                                      ),
+                                      onPressed: () {
+                                        if (dropdownValue == 'Nutri Rich') {
+                                          nutri = amount;
+
+                                        }
+                                        if (dropdownValue == 'Milk') {
+                                          milk = amount;
+
+                                        }
+                                        if (dropdownValue == 'Curd') {
+                                          curd = amount;
+
+                                        }
+                                        if (dropdownValue == 'Other') {
+                                          other = amount;
+                                        }
+                                      },
+                                    )
                                   ],
                                 ),
-                                Text(
-                                  'Total Weight = $total',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold, fontSize: 20),
+                                TextFormField(
+                                  maxLength: 25,
+                                  decoration: InputDecoration(
+                                      labelText: 'Amount',
+                                      icon: Padding(
+                                        padding: EdgeInsets.only(top: 15.0),
+                                        child: Icon(Icons.backup),
+                                      )),
+                                  onChanged: (String value) {
+                                    amount = int.parse(value);
+                                  },
+                                ),
+                                CupertinoButton(
+
+                                  color: Colors.red,
+                                  child: Text('Total'),
+                                  onPressed: () {
+                                    if (dropdownValue == 'Nutri Rich') {
+                                      nutri = amount;
+                                    }
+                                    if (dropdownValue == 'Milk') {
+                                      milk = amount;
+                                    }
+                                    if (dropdownValue == 'Curd') {
+                                      curd = amount;
+                                    }
+                                    if (dropdownValue == 'Other') {
+                                      other = amount;
+                                    }
+                                    setState(() {
+                                      total = nutri + milk + curd+ other;
+
+                                    });
+                                  },
                                 ),
                               ],
                             ),
                           ),
                         ),
                         Expanded(
-                            child: 
-                            Card(
-                              margin:const EdgeInsets.all(40),
-                              child: CupertinoButton(
+                          child: Column(
+                            children: [
+                              Table(
+                                border: TableBorder.all(),
+                                children: [
+                                  TableRow(children: [
+                                    Text('Product'),
+                                    Text('Amount'),
+                                  ]),
 
-                              color: Colors.red,
-                              child: Text('Bill'),
-                              onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => Bill(
-                                          value: Variables(
-                                            customername: _customernamecontroller.text,
-                                            vehiclenumber: _vehiclenumbercontroller.text,
-                                            billnumber: _billnumbercontroller.text,
-                                            milk: milk,
-                                            curd: curd,
-                                            nutri: nutri,
-                                            other: other,
-                                            total: total,
+                                  TableRow(children: [
+                                    Text('Nutri Rich'),
+                                    Text('$nutri'),
+                                  ]),
 
-                                          )),
-                                    ));
-                              }),
-                            )
+                                  TableRow(children: [
+                                    Text('Milk'),
+                                    Text('$milk'),
+                                  ]),
 
-                        )
+                                  TableRow(children: [
+                                    Text('Curd'),
+                                    Text('$curd'),
+                                  ]),
+
+                                  TableRow(children: [
+
+                                    Text('Others'),
+                                    Text('$other'),
+                                  ]),
+                                ],
+                              ),
+                              Text(
+                                'Total Weight = $total',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 20),
+                              ),
+                              CupertinoButton(
+
+                                  color: Colors.red,
+                                  child: Text('Bill'),
+                                  onPressed: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => Bill(
+                                              value: Variables(
+                                                customername: _customernamecontroller.text,
+                                                vehiclenumber: _vehiclenumbercontroller.text,
+                                                billnumber: _billnumbercontroller.text,
+                                                milk: milk,
+                                                curd: curd,
+                                                nutri: nutri,
+                                                other: other,
+                                                total: total,
+
+                                              )),
+                                        ));
+                                  }),
+                            ],
+
+                          ),
+                        ),
+
                       ],
                     ),
 
                   ],
                 ),
               ),
-
             ),
           ],
         ),
