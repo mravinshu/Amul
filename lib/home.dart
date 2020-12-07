@@ -4,8 +4,17 @@ import 'package:amul/bill.dart';
 
 class Variables {
   final String customername, vehiclenumber, billnumber;
-  final int milk,curd,nutri,other,total;
-  const Variables({this.customername, this.vehiclenumber, this.billnumber,this.milk,this.nutri,this.curd,this.other,this.total});
+  final int milk, curd, nutri, other, total;
+
+  const Variables(
+      {this.customername,
+      this.vehiclenumber,
+      this.billnumber,
+      this.milk,
+      this.nutri,
+      this.curd,
+      this.other,
+      this.total});
 }
 
 class Homepage1 extends StatefulWidget {
@@ -25,6 +34,7 @@ class _Homepage1State extends State<Homepage1> {
   int curd = 0;
   int total = 0;
   int other = 0;
+
   @override
   Widget build(BuildContext context) {
     var scaffold = Scaffold(
@@ -134,7 +144,8 @@ class _Homepage1State extends State<Homepage1> {
                                       icon: Icon(Icons.arrow_downward),
                                       iconSize: 24,
                                       elevation: 16,
-                                      style: TextStyle(color: Colors.deepPurple),
+                                      style:
+                                          TextStyle(color: Colors.deepPurple),
                                       underline: Container(
                                         height: 2,
                                         color: Colors.deepPurpleAccent,
@@ -164,15 +175,12 @@ class _Homepage1State extends State<Homepage1> {
                                       onPressed: () {
                                         if (dropdownValue == 'Nutri Rich') {
                                           nutri = amount;
-
                                         }
                                         if (dropdownValue == 'Milk') {
                                           milk = amount;
-
                                         }
                                         if (dropdownValue == 'Curd') {
                                           curd = amount;
-
                                         }
                                         if (dropdownValue == 'Other') {
                                           other = amount;
@@ -194,7 +202,6 @@ class _Homepage1State extends State<Homepage1> {
                                   },
                                 ),
                                 CupertinoButton(
-
                                   color: Colors.red,
                                   child: Text('Total'),
                                   onPressed: () {
@@ -211,8 +218,7 @@ class _Homepage1State extends State<Homepage1> {
                                       other = amount;
                                     }
                                     setState(() {
-                                      total = nutri + milk + curd+ other;
-
+                                      total = nutri + milk + curd + other;
                                     });
                                   },
                                 ),
@@ -221,73 +227,108 @@ class _Homepage1State extends State<Homepage1> {
                           ),
                         ),
                         Expanded(
-                          child: Column(
-                            children: [
-                              Table(
-                                border: TableBorder.all(),
-                                children: [
-                                  TableRow(children: [
-                                    Text('Product'),
-                                    Text('Amount'),
-                                  ]),
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 100),
+                            child: Column(
+                              children: [
+                                Text(
+                                  'Summary',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontFamily: 'Tatu',
+                                    fontSize: 20,
+                                  ),
+                                ),
+                                Container(
+                                  height: 60,
+                                ),
+                                Table(
+                                  border: TableBorder.all(),
+                                  children: [
+                                    if (nutri != 0)
+                                      TableRow(children: [
+                                        Text('Nutri Rich', style: TextStyle(
+                                          fontSize: 18,
+                                        ),textAlign: TextAlign.center,),
+                                        Text('$nutri',style: TextStyle(
+                                          fontSize: 18,
+                                        ),textAlign: TextAlign.center,),
+                                      ]),
+                                    if (milk != 0)
+                                      TableRow(children: [
+                                        Text('Milk',style: TextStyle(
+                                          fontSize: 18,
+                                        ),textAlign: TextAlign.center,),
+                                        Text('$milk',style: TextStyle(
+                                          fontSize: 18,
+                                        ),textAlign: TextAlign.center,),
+                                      ]),
+                                    if (curd != 0)
+                                      TableRow(children: [
+                                        Text('Curd',style: TextStyle(
+                                          fontSize: 18,
+                                        ),textAlign: TextAlign.center,),
+                                        Text('$curd',style: TextStyle(
+                                          fontSize: 18,
+                                        ),textAlign: TextAlign.center,),
+                                      ]),
+                                    if (other != 0)
+                                      TableRow(children: [
+                                        Text('Others',style: TextStyle(
+                                          fontSize: 18,
+                                        ),textAlign: TextAlign.center,),
+                                        Text('$other',style: TextStyle(
+                                          fontSize: 18,
+                                        ),textAlign: TextAlign.center,),
+                                      ]),
+                                    TableRow(
 
-                                  TableRow(children: [
-                                    Text('Nutri Rich'),
-                                    Text('$nutri'),
-                                  ]),
+                                        children: [
+                                      Text('Total Weight',style: TextStyle(
+                                        fontSize: 18,
+                                      ),textAlign: TextAlign.center,),
+                                      Text('$total',style: TextStyle(
+                                        fontSize: 18,
+                                      ),textAlign: TextAlign.center,),
+                                    ]),
 
-                                  TableRow(children: [
-                                    Text('Milk'),
-                                    Text('$milk'),
-                                  ]),
-
-                                  TableRow(children: [
-                                    Text('Curd'),
-                                    Text('$curd'),
-                                  ]),
-
-                                  TableRow(children: [
-
-                                    Text('Others'),
-                                    Text('$other'),
-                                  ]),
-                                ],
-                              ),
-                              Text(
-                                'Total Weight = $total',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 20),
-                              ),
-                              CupertinoButton(
-
-                                  color: Colors.red,
-                                  child: Text('Bill'),
-                                  onPressed: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) => Bill(
-                                              value: Variables(
-                                                customername: _customernamecontroller.text,
-                                                vehiclenumber: _vehiclenumbercontroller.text,
-                                                billnumber: _billnumbercontroller.text,
-                                                milk: milk,
-                                                curd: curd,
-                                                nutri: nutri,
-                                                other: other,
-                                                total: total,
-
-                                              )),
-                                        ));
-                                  }),
-                            ],
-
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-
+                        Expanded(
+                          child:
+                          Center(
+                            child: CupertinoButton(
+                              minSize: 40,
+                                color: Colors.red,
+                                child: Text('Bill'),
+                                onPressed: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => Bill(
+                                            value: Variables(
+                                              customername:
+                                              _customernamecontroller.text,
+                                              vehiclenumber:
+                                              _vehiclenumbercontroller.text,
+                                              billnumber:
+                                              _billnumbercontroller.text,
+                                              milk: milk,
+                                              curd: curd,
+                                              nutri: nutri,
+                                              other: other,
+                                              total: total,
+                                            )),
+                                      ));
+                                }),
+                          ),
+                        )
                       ],
                     ),
-
                   ],
                 ),
               ),
