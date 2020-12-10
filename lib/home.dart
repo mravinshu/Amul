@@ -78,13 +78,13 @@ class _Homepage1State extends State<Homepage1> {
         ),
       ),
       body: Container(
-        padding: const EdgeInsets.symmetric(vertical: 60, horizontal: 40),
+        padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 40),
         child: Column(
           children: [
             Card(
               shadowColor: Colors.red,
               child: Container(
-                padding: const EdgeInsets.all(40),
+                padding: const EdgeInsets.all(30),
                 child: Column(
                   children: [
                     Text(
@@ -247,51 +247,88 @@ class _Homepage1State extends State<Homepage1> {
                                   children: [
                                     if (nutri != 0)
                                       TableRow(children: [
-                                        Text('Nutri Rich', style: TextStyle(
-                                          fontSize: 18,
-                                        ),textAlign: TextAlign.center,),
-                                        Text('$nutri',style: TextStyle(
-                                          fontSize: 18,
-                                        ),textAlign: TextAlign.center,),
+                                        Text(
+                                          'Nutri Rich',
+                                          style: TextStyle(
+                                            fontSize: 18,
+                                          ),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                        Text(
+                                          '$nutri',
+                                          style: TextStyle(
+                                            fontSize: 18,
+                                          ),
+                                          textAlign: TextAlign.center,
+                                        ),
                                       ]),
                                     if (milk != 0)
                                       TableRow(children: [
-                                        Text('Milk',style: TextStyle(
-                                          fontSize: 18,
-                                        ),textAlign: TextAlign.center,),
-                                        Text('$milk',style: TextStyle(
-                                          fontSize: 18,
-                                        ),textAlign: TextAlign.center,),
+                                        Text(
+                                          'Milk',
+                                          style: TextStyle(
+                                            fontSize: 18,
+                                          ),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                        Text(
+                                          '$milk',
+                                          style: TextStyle(
+                                            fontSize: 18,
+                                          ),
+                                          textAlign: TextAlign.center,
+                                        ),
                                       ]),
                                     if (curd != 0)
                                       TableRow(children: [
-                                        Text('Curd',style: TextStyle(
-                                          fontSize: 18,
-                                        ),textAlign: TextAlign.center,),
-                                        Text('$curd',style: TextStyle(
-                                          fontSize: 18,
-                                        ),textAlign: TextAlign.center,),
+                                        Text(
+                                          'Curd',
+                                          style: TextStyle(
+                                            fontSize: 18,
+                                          ),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                        Text(
+                                          '$curd',
+                                          style: TextStyle(
+                                            fontSize: 18,
+                                          ),
+                                          textAlign: TextAlign.center,
+                                        ),
                                       ]),
                                     if (other != 0)
                                       TableRow(children: [
-                                        Text('Others',style: TextStyle(
-                                          fontSize: 18,
-                                        ),textAlign: TextAlign.center,),
-                                        Text('$other',style: TextStyle(
-                                          fontSize: 18,
-                                        ),textAlign: TextAlign.center,),
+                                        Text(
+                                          'Others',
+                                          style: TextStyle(
+                                            fontSize: 18,
+                                          ),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                        Text(
+                                          '$other',
+                                          style: TextStyle(
+                                            fontSize: 18,
+                                          ),
+                                          textAlign: TextAlign.center,
+                                        ),
                                       ]),
-                                    TableRow(
-
-                                        children: [
-                                      Text('Total Weight',style: TextStyle(
-                                        fontSize: 18,
-                                      ),textAlign: TextAlign.center,),
-                                      Text('$total',style: TextStyle(
-                                        fontSize: 18,
-                                      ),textAlign: TextAlign.center,),
+                                    TableRow(children: [
+                                      Text(
+                                        'Total Weight',
+                                        style: TextStyle(
+                                          fontSize: 18,
+                                        ),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                      Text(
+                                        '$total',
+                                        style: TextStyle(
+                                          fontSize: 18,
+                                        ),
+                                        textAlign: TextAlign.center,
+                                      ),
                                     ]),
-
                                   ],
                                 ),
                               ],
@@ -299,10 +336,9 @@ class _Homepage1State extends State<Homepage1> {
                           ),
                         ),
                         Expanded(
-                          child:
-                          Center(
+                          child: Center(
                             child: CupertinoButton(
-                              minSize: 40,
+                                minSize: 40,
                                 color: Colors.red,
                                 child: Text('Bill'),
                                 onPressed: () {
@@ -311,18 +347,18 @@ class _Homepage1State extends State<Homepage1> {
                                       MaterialPageRoute(
                                         builder: (context) => Bill(
                                             value: Variables(
-                                              customername:
+                                          customername:
                                               _customernamecontroller.text,
-                                              vehiclenumber:
+                                          vehiclenumber:
                                               _vehiclenumbercontroller.text,
-                                              billnumber:
+                                          billnumber:
                                               _billnumbercontroller.text,
-                                              milk: milk,
-                                              curd: curd,
-                                              nutri: nutri,
-                                              other: other,
-                                              total: total,
-                                            )),
+                                          milk: milk,
+                                          curd: curd,
+                                          nutri: nutri,
+                                          other: other,
+                                          total: total,
+                                        )),
                                       ));
                                 }),
                           ),

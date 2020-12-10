@@ -10,118 +10,267 @@ class Bill extends StatefulWidget {
 }
 
 class _BillState extends State<Bill> {
-  Image _image;
-  GlobalKey previewContainer = new GlobalKey();
-  int originalSize = 800;
+  int nutriw = 100;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        leading: IconButton(
-          onPressed: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => Homepage1(),
-                ));
-          },
-          icon: Icon(
-            Icons.arrow_back,
-            color: Colors.black,
-          ),
-        ),
-      ),
       backgroundColor: Colors.white,
-      body: Container(
-        constraints: BoxConstraints.expand(),
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: NetworkImage(
-                "https://raw.githubusercontent.com/mravinshu/Amul/main/asset/Screenshot%202020-12-02%20165924.png"),
+      body: Column(
+        children: [
+          Center(
+            child: Column(
+              children: [
+                Text(
+                  'KIARA DISTRICT CO-OPERATIVE MILK PRODUCERS UNION LTD; ANAND',
+                  style: TextStyle(fontSize: 30),
+                ),
+                Text(
+                  'Village:Chidana, Distt, Sonepat',
+                  style: TextStyle(fontSize: 20),
+                ),
+                Container(
+                  height: 10,
+                ),
+                Text(
+                  ' Dispatched order slip ',
+                  style: TextStyle(
+                      backgroundColor: Colors.black,
+                      color: Colors.white,
+                      fontSize: 20),
+                ),
+              ],
+            ),
           ),
-        ),
-        child: Container(
-          child: Row(
+          Container(
+            height: 30,
+          ),
+          Row(
             children: [
-              Column(
-                children: [
-                  Card(
-                    child: Container(
-                      height: 187,
-                    ),
-                  ),
-                  Text(
-                    '                         ${widget.value.billnumber}',
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  Text(
-                    '                                                             ${widget.value.customername}',
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  Text(
-                    '                                           ${widget.value.vehiclenumber}',
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  Text(
-                    '             Milk                                    ${widget.value.milk}',
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  Text(
-                    '          nutri                                 ${widget.value.nutri}',
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  Text(
-                    '         curd                                  ${widget.value.curd}',
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  Text(
-                    '       others                                    ${widget.value.other}',
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  Text(
-                    '     total                                      ${widget.value.total}',
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  Card(
-                    child: Container(
-                      height: 380,
-                      child: Card(),
-                    ),
-                  ),
-                  RaisedButton(
-                    child: Text('Print'),
-                    onPressed: () {},
-                  )
-                ],
+              Text(
+                '  Bill No.         ${widget.value.billnumber}',
+                style: TextStyle(
+                  fontSize: 25,
+                ),
+                textAlign: TextAlign.center,
               ),
             ],
           ),
-        ),
+          Row(
+            children: [
+              Text(
+                '  Customer Name:       ${widget.value.customername}',
+                style: TextStyle(
+                  fontSize: 25,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
+          Row(
+            children: [
+              Text(
+                '  Vehicle Number:       ${widget.value.vehiclenumber}',
+                style: TextStyle(
+                  fontSize: 25,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
+          Container(
+            height: 30,
+          ),
+          Container(
+            height: 400,
+            child: Table(
+              border: TableBorder.all(),
+              children: [
+                TableRow(children: [
+                  Text(
+                    'Products',
+                    style: TextStyle(
+                      fontSize: 25,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  Text(
+                    'Nos',
+                    style: TextStyle(
+                      fontSize: 25,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  Text(
+                    'Weight',
+                    style: TextStyle(
+                      fontSize: 25,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  Text(
+                    'Remarks',
+                    style: TextStyle(
+                      fontSize: 25,
+                    ),
+                    textAlign: TextAlign.center,
+                  )
+                ]),
+                if (widget.value.nutri != 0)
+                  TableRow(children: [
+                    Text(
+                      'Nutri Rich',
+                      style: TextStyle(
+                        fontSize: 18,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    Text(
+                      '${widget.value.nutri}',
+                      style: TextStyle(
+                        fontSize: 18,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    Text(
+                      '',
+                      style: TextStyle(
+                        fontSize: 18,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    Text(
+                      '',
+                      style: TextStyle(
+                        fontSize: 18,
+                      ),
+                      textAlign: TextAlign.center,
+                    )
+                  ]),
+                if (widget.value.milk != 0)
+                  TableRow(
+                    children: [
+                      Text(
+                        'Milk',
+                        style: TextStyle(
+                          fontSize: 18,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                      Text(
+                        '${widget.value.milk}',
+                        style: TextStyle(
+                          fontSize: 18,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                      Text(
+                        '',
+                        style: TextStyle(
+                          fontSize: 18,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                      Text(
+                        '',
+                        style: TextStyle(
+                          fontSize: 18,
+                        ),
+                        textAlign: TextAlign.center,
+                      )
+                    ],
+                  ),
+                if (widget.value.curd != 0)
+                  TableRow(
+                    children: [
+                      Text(
+                        'Curd',
+                        style: TextStyle(
+                          fontSize: 18,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                      Text(
+                        '${widget.value.curd}',
+                        style: TextStyle(
+                          fontSize: 18,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                      Text(
+                        '',
+                        style: TextStyle(
+                          fontSize: 18,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                      Text(
+                        '',
+                        style: TextStyle(
+                          fontSize: 18,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
+                  ),
+                if (widget.value.other != 0)
+                  TableRow(
+                    children: [
+                      Text(
+                        'Other',
+                        style: TextStyle(
+                          fontSize: 18,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                      Text(
+                        '${widget.value.other}',
+                        style: TextStyle(
+                          fontSize: 18,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                      Text(
+                        '',
+                        style: TextStyle(
+                          fontSize: 18,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                      Text(
+                        '',
+                        style: TextStyle(
+                          fontSize: 18,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
+                  ),
+              ],
+            ),
+          ),
+          Row(
+            children: [
+              Expanded(
+                child: Text(
+                  'Delivered By',
+                  style: TextStyle(
+                    fontSize: 25,
+                  ),
+                  textAlign: TextAlign.right,
+                ),
+              ),
+              Expanded(
+                child: Text(
+                  'Signed By',
+                  style: TextStyle(
+                    fontSize: 25,
+                  ),
+                  textAlign: TextAlign.right,
+                ),
+              ),
+            ],
+          )
+        ],
       ),
     );
   }
