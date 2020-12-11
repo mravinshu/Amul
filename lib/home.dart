@@ -4,7 +4,7 @@ import 'package:amul/bill.dart';
 
 class Variables {
   final String customername, vehiclenumber, billnumber;
-  final int milk, curd, nutri, other, total;
+  final int milk, curd, nutri, other, total, nutriw, milkw,curdw,otherw;
 
   const Variables(
       {this.customername,
@@ -14,7 +14,11 @@ class Variables {
       this.nutri,
       this.curd,
       this.other,
-      this.total});
+      this.total,
+      this.nutriw,
+      this.milkw,
+      this.curdw,
+      this.otherw});
 }
 
 class Homepage1 extends StatefulWidget {
@@ -34,6 +38,10 @@ class _Homepage1State extends State<Homepage1> {
   int curd = 0;
   int total = 0;
   int other = 0;
+  int nutriw=0;
+  int milkw=0;
+  int curdw=0;
+  int otherw=0;
 
   @override
   Widget build(BuildContext context) {
@@ -175,15 +183,19 @@ class _Homepage1State extends State<Homepage1> {
                                       onPressed: () {
                                         if (dropdownValue == 'Nutri Rich') {
                                           nutri = amount;
+                                          nutriw = nutri*15;
                                         }
                                         if (dropdownValue == 'Milk') {
                                           milk = amount;
+                                          milkw= milk*15;
                                         }
                                         if (dropdownValue == 'Curd') {
                                           curd = amount;
+                                          curdw = curd*15;
                                         }
                                         if (dropdownValue == 'Other') {
                                           other = amount;
+                                          otherw= other*15;
                                         }
                                       },
                                     )
@@ -358,6 +370,10 @@ class _Homepage1State extends State<Homepage1> {
                                           nutri: nutri,
                                           other: other,
                                           total: total,
+                                              milkw: milkw,
+                                              nutriw: nutriw,
+                                              curdw: curdw,
+                                              otherw: otherw
                                         )),
                                       ));
                                 }),
